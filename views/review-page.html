@@ -23,9 +23,21 @@
     <form action="" method="post"></form>
     <div class="container">
         <div id="uname">
-            <label for "uname">UserName</label>
+            <label for="luname">UserName</label>
             <div id="uin">
-                <input type="text">
+                <input type="text" id="itxt" placeholder="Enter UserName" required>
+            </div>
+        </div>
+        <div id="email">
+            <label for="lmail">Email-id</label>
+            <div id="mail">
+               <input type="email" id="imail" placeholder="Enter Email-id" required>
+            </div>
+        </div>
+        <div id="pass">
+            <label for="lpas">Password</label>
+            <div id="pasw">
+               <input type="password" id="ipass" placeholder="Enter Password" required>
             </div>
         </div>
         <div id="rname">
@@ -33,6 +45,9 @@
             <div id="rin">
                 <textarea name="rev" rows="5" cols="50"></textarea>
             </div>
+        </div>
+        <div id="btn">
+            <button type="submit">Submit</button>
         </div>
     </div>
 </body>

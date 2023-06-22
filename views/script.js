@@ -14,6 +14,7 @@ function returnMovies(url) {
         .then(function (data) {
             console.log(data.results);
             data.results.forEach(element => {
+                console.log(element);
                 const div_row = document.createElement('div');
                 div_row.setAttribute('class', 'row');
                 const div_column = document.createElement('div');
@@ -70,3 +71,15 @@ function getusers_body() {
         catch (err) { console.error(`Error: ${err}`); }
     });
 }
+
+
+
+
+
+
+// function returnMoviesbyid(url,id){
+//     fetch(url).then(res => res.json())
+//         .then(function (data) {
+//             console.log(data)
+//         });
+// }
