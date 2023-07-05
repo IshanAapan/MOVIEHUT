@@ -8,4 +8,16 @@ async function create(request,response){
         console.log(error);
     }
 }
-export default {create};
+async function login(request,response){
+    try {
+        let email=request.body.email;
+        console.log(email);
+        data = await users.findOne({email:email})
+        console.log(data);
+        response.send(data)
+
+    } catch (error) {
+        
+    }
+}
+export default {create,login};

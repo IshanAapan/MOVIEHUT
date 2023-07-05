@@ -9,6 +9,7 @@ router.get("/movies",Movie_controller.index)
 router.post("/movies",Movie_controller.create)
 router.post("/movies/review",ReviewsCtrl.create)
 router.post("/users",User_controller.create)
+router.post("/users/login",User_controller.login);
 // router.route("/movie/:id").get(ReviewsCtrl.apiGetReviews)
 // router.route("/new").post(ReviewsCtrl.apiPostReview)
 // router.route("/:id")
