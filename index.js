@@ -7,7 +7,7 @@ import ReviewsDAO from "./dao/reviewsDAO.js"
 // const mongo_username = process.env['MONGO_USERNAME']
 // const mongo_password = process.env['MONGO_PASSWORD']
 
-const port = 3000
+const port = 3001
 
 // MongoClient.connect(
 //   uri,
