@@ -22,7 +22,15 @@ async function create(request,response){
     console.log(error);
   }
 }
-export default {create};
+async function index(request,response){
+  try {
+    const data=await reviews.find({}).populate("movie_id")
+    response.send(data);
+  } catch (error) {
+    
+  }
+}
+export default {create,index};
 
 // export default class ReviewsController {
 //   static async apiPostReview(req, res, next) {
