@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page with Background Image Example</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div id="bg"></div>
+  <form action="api/v1/users/login" method="post">
+    <!-- <img src="./img/logof.png" alt="logo"> -->
+    <h1>Log in</h1>
+    <div class="form-field">
+      <input type="email" placeholder="Email" required />
+    </div>
+
+    <div class="form-field">
+      <input type="password" placeholder="Password" min="6" max="8" required />
+    </div>
+
+    <div class="form-field">
+      <!-- <a href="../views/script.js"> -->
+        <button class="btn" type="submit">Log in</button>
+      <!-- </a> -->
+    </div>
+    <a href="./registeration.html">Sign up for Movie Hut?</a>
+
+  </form>
+  <!-- partial -->
+
+  <!-- <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // prevent the form's default submission action
+      window.location = './hello.html'; // redirect to index page
+    });
+  </script> -->
+
+</body>
+
+</html>

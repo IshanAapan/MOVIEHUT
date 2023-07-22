@@ -21,6 +21,20 @@ function returnMovies(url) {
                 div_column.setAttribute('class', 'column');
                 const div_card = document.createElement('div');
                 div_card.setAttribute('class', 'card');
+
+                    // Add a click event listener to each movie card
+                    div_card.addEventListener('click', () => {
+                        // Extract movie details from the clicked card
+                        const movieName = element.title;
+                        const moviePoster = IMG_PATH + element.poster_path;
+
+                        // Encode movie details and redirect to the review page
+                    const encodedMovieName = encodeURIComponent(movieName);
+                    const encodedMoviePoster = encodeURIComponent(moviePoster);
+                    window.location.href = `./review-page.html?movieName=${encodedMovieName}&moviePoster=${encodedMoviePoster}`;
+                });
+    
+
                 const center = document.createElement('center');
                 const img = document.createElement('img');
                 img.setAttribute('class', 'thumbnail');
@@ -54,6 +68,9 @@ form.addEventListener("submit", (e) => {
         search.value = "";
     }
 });
+
+
+
 
 
 // function getusers_body() {
