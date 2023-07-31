@@ -7,7 +7,7 @@ const user_schema=new mongoose.Schema({
         type:String
     },
     pass:{
-        type:Number
+        type:String
     }
 })
 const users=mongoose.model("user",user_schema)

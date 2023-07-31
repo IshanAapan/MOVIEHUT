@@ -1,5 +1,7 @@
 // import ReviewsDAO from "../dao/reviewsDAO.js"
 import reviews from "../models/review.js";
+import movies from "../models/movies.js";
+import mongoose from "mongoose";
 
 // export function apihome(request,response){
 //   response.send("Movie Route API");
@@ -16,10 +18,27 @@ import reviews from "../models/review.js";
 
 async function create(request,response){
   try {
-    await reviews.create(request.body)
-    response.send("added successfully")
+    const {review, movie_id}= request.body;
+    
+    //  const validMovieId = new mongoose.Types.ObjectId(movie_id);
+    // Check if the movie with the given movie_id exists in the movies collection
+    // const validMovieid =mongoose.Types.ObjectId(data.movie_id);
+    const existingMovie = await movies.findOne({ _id:movie_id});
+    if (existingMovie) {
+      // If the movie exists, add the review to the reviews collection
+      await reviews.create({review,movie_id});
+      response.status(201).json({ message: "Review added successfully" });
+    } else {
+      // If the movie does not exist, create a new movie with the given movie_id
+      await movies.create({ _id: movie_id});
+      // Add the review to the reviews collection with the new movie_id
+      await reviews.create({review,movie_id});
+      response.status(201).json({ message: "New movie and review added successfully" });
+    }
+    
   } catch (error) {
     console.log(error);
+    response.status(500).json({error:"internal server error"})
   }
 }
 async function index(request,response){

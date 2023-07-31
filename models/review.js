@@ -5,7 +5,7 @@ const reviews_schema=new mongoose.Schema({
         required:true
     },
     movie_id:{
-        type:mongoose.Types.ObjectId,
+        type:Number,
         ref: 'movie',
         required:true
     }

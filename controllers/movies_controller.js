@@ -1,3 +1,5 @@
+// import { MongooseError } from "mongoose";
+import mongoose from "mongoose";
 import movies from "../models/movies.js"
 
 async function create (request,response){
@@ -19,5 +21,15 @@ async function index(request,response){
     }
     
 }
-export default {create,index}
+async function show(request,response)
+{
+   try {
+      const movie = await movies.findById(request.query.id);
+      response.status(200).send(movie)
+      
+   } catch (error) {
+      console.log(error);
+   }
+}
+export default {create,index,show}
 

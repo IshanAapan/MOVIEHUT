@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page with Background Image Example</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div id="bg"></div>
+  <form id ="loginForm">
+    <!-- <img src="./img/logof.png" alt="logo"> -->
+    <h1>Log in</h1>
+    <div class="form-field">
+      <input type="email" id="email" placeholder="Email" required />
+    </div>
+
+    <div class="form-field">
+      <input type="password" id ="password" placeholder="Password" min="6" max="8" required />
+    </div>
+
+    <div class="form-field">
+      <!-- <a href="../views/script.js"> -->
+        <button type="submit" class="btn">Log in</button>
+      <!-- </a> -->
+    </div>
+    <a href="./registeration.html">Sign up for Movie Hut?</a>
+
+  </form>
+  <!-- partial -->
+
+  <!-- <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // prevent the form's default submission action
+      window.location = './hello.html'; // redirect to index page
+    });
+  </script> -->
+  <script>
+  
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("password").value;
+
+            // Send login data to the backend
+            try {
+                const response = await fetch("http://localhost:3000/api/v1/users/login", {
+                    method: "post",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, pass })
+                });
+
+                const data = await response.json();
+                if (response.status==200) {
+                    // Store the token in local storage or cookies for further use
+                    localStorage.setItem("jwtToken", data.token);
+                    console.log(data.token);
+                     // Redirect to the main movie page
+                 window.location.href = "./index.html"; // Replace with the URL of your main movie page
+                } else {
+                    // alert(data.message);
+                }
+            } catch (error) {
+                console.error("Error during login:", error);
+                // alert("An error occurred during login.");
+            }
+        });
+
+
+    // function signup() {
+    //   // Implement the signup logic here
+    //   // Redirect the user to the signup page or handle it as per your project requirements
+    // }
+  </script>
+
+</body>
+
+</html>
