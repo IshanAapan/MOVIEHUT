@@ -1,4 +1,8 @@
 import mongoose from "mongoose";
+import users from "../models/user.js";
+import movies from "./movies.js";
+// import movies from "../models/movies.js"
+
 const reviews_schema=new mongoose.Schema({
     review:{
         type:String,
@@ -6,10 +10,18 @@ const reviews_schema=new mongoose.Schema({
     },
     movie_id:{
         type:Number,
-        ref: 'movie',
+        ref: 'movies',
         required:true
-    }
-},{timestamps: true})
+    },
+    name:
+    {
+        type:String,
+        ref:"users",
+        required:'true'
 
-const reviews=mongoose.model("review",reviews_schema)
+    },
+
+},{timestamps: true});
+
+const reviews=mongoose.model("review",reviews_schema);
 export default reviews;

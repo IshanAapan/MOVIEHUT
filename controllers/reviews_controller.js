@@ -1,6 +1,7 @@
 // import ReviewsDAO from "../dao/reviewsDAO.js"
 import reviews from "../models/review.js";
 import movies from "../models/movies.js";
+import users from "../models/user.js";
 import mongoose from "mongoose";
 
 // export function apihome(request,response){
@@ -18,23 +19,36 @@ import mongoose from "mongoose";
 
 async function create(request,response){
   try {
-    const {review, movie_id}= request.body;
+    const {review, movie_id,name}= request.body;
     
     //  const validMovieId = new mongoose.Types.ObjectId(movie_id);
     // Check if the movie with the given movie_id exists in the movies collection
     // const validMovieid =mongoose.Types.ObjectId(data.movie_id);
-    const existingMovie = await movies.findOne({ _id:movie_id});
-    if (existingMovie) {
-      // If the movie exists, add the review to the reviews collection
-      await reviews.create({review,movie_id});
-      response.status(201).json({ message: "Review added successfully" });
-    } else {
-      // If the movie does not exist, create a new movie with the given movie_id
-      await movies.create({ _id: movie_id});
-      // Add the review to the reviews collection with the new movie_id
-      await reviews.create({review,movie_id});
-      response.status(201).json({ message: "New movie and review added successfully" });
+    if(!review)
+    {
+      response.status(404).json({message:"please write something in review"});
     }
+    let existingMovie = await movies.findOne({movie_id});
+    if (!existingMovie) {
+      // If the movie exists, add the review to the reviews collection
+     existingMovie= await movies.create({movie_id});
+      // response.status(201).json({ message: "added successfully" });
+    } 
+      // If the movie does not exist, create a new movie with the given movie_id
+      const newreview =await reviews.create({
+        review,
+        movie_id,
+        name,
+
+      });
+      
+     existingMovie.reviews.push(newreview._id);
+     await existingMovie.save();
+     const user =await users.findOne({name});
+     
+     user.reviews.push(newreview._id);
+     await user.save();
+    response.status(201).json({message:"review added successfully"});
     
   } catch (error) {
     console.log(error);

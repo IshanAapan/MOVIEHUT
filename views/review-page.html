@@ -35,6 +35,9 @@
             <!-- Existing reviews will be dynamically added here -->
         </ul>
     </div>
+    <div>
+        <button id ="logout"> log out</button>
+    </div>
 
     <script>
         // Get movie details from the URL query parameters
@@ -63,6 +66,7 @@
                   const review= document.getElementById("review-text").value;
                   const movieid =urlParams.get('movieid');
                   const token1 = localStorage.getItem('jwtToken');
+                  const user_id=localStorage.getItem('user_id');
                   try {
                     const response = await fetch("http://localhost:3000/api/v1/movies/review",{
                         method: "post",
@@ -70,14 +74,14 @@
                             "content-type":"application/json",
                             "Authorization": `Bearer ${token1}` // Include the token in the request headers
                         },
-                        body: JSON.stringify({ movie_id: movieid, review: review })
+                        body: JSON.stringify({ movie_id: movieid, review: review,name:user_id })
                     });
                     const data =await response.json();
                     if (response.status === 201) {
                       alert(data.message); // Show success message
                      // You can redirect the user to another page or handle the response as per your requirements.
                      } else {
-                              alert("please write review .");
+                              alert("Review could not be added.");
                             }
                     
                   } catch (error) {
@@ -92,8 +96,23 @@
                 
             }
             else{
+                document.getElementById('submit-button').addEventListener('click',redirect);
+            function redirect()
+            {    
             window.location.href ='./login.html';
             }
+            }
+            function logout()
+            {
+                const token =localStorage.getItem('jwtToken');
+                if(token)
+                {
+                localStorage.removeItem('jwtToken');
+                window.location.href='./index.html';
+                }
+            }
+
+            document.getElementById('logout').addEventListener('click',logout);
 
         // Submit button click event handler
       

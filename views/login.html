@@ -59,6 +59,8 @@
                 if (response.status==200) {
                     // Store the token in local storage or cookies for further use
                     localStorage.setItem("jwtToken", data.token);
+                    localStorage.setItem("user_id",data.name);
+                    console.log(data.name);
                     console.log(data.token);
                      // Redirect to the main movie page
                  window.location.href = "./index.html"; // Replace with the URL of your main movie page

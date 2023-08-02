@@ -58,7 +58,8 @@ async function login(request, response) {
     console.log(token);
     // Send the retrieved data as the response
     // response.send(token});
-     return response.json({token});
+    console.log(data.name);
+     return response.json({token,name:data.name});
   } catch (error) {
     // If an error occurs during execution, send an error response
     console.error("An error occurred:", error);
