@@ -9,6 +9,7 @@ const router = express.Router()
 router.get("/movies",Movie_controller.index)
 router.post("/movies",Movie_controller.create)
 router.post("/movies/review",authenticateToken,ReviewsCtrl.create)
+router.get("/reviews/get-movie-and-reviews", ReviewsCtrl.getMovieAndReviews);
 // router.post("/movies/review",ReviewsCtrl.create)
 router.get("/movie",Movie_controller.show)
 router.post("/users",User_controller.create)

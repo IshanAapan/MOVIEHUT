@@ -63,7 +63,27 @@ async function index(request,response){
     
   }
 }
-export default {create,index};
+async function getMovieAndReviews(request, response) {
+  try {
+    const { movie_id } = request.query;
+    // console.log(movie_id);
+
+    if (!movie_id) {
+      return response.status(400).json({ error: "Movie ID is required" });
+    }
+
+    const movie = await movies.findOne({ movie_id }).populate("reviews");
+    if (!movie) {
+      return response.status(404).json({ error: "Movie not found" });
+    }
+     console.log(movie);
+    response.json({ movie });
+  } catch (error) {
+    console.error(error);
+    response.status(500).json({ error: "Internal server error" });
+  }
+}
+export default {create,index,getMovieAndReviews};
 
 // export default class ReviewsController {
 //   static async apiPostReview(req, res, next) {
