@@ -1,0 +1,67 @@
+body{
+    background-color: black;
+}
+.container{
+    margin-top: 60px;
+    margin-left: 35px;
+}
+img:hover{
+    cursor: pointer;
+}
+img{
+    width: 30vh;
+    height: auto;
+}
+h1{
+    color: aliceblue;
+}
+.logo{
+    margin: 10px;
+}
+#logout{
+   float: right;
+   /* margin-right: 6px; */
+    margin-top: 20px;
+    /* width: 30px; */
+    /* height: 20px; */
+}
+button{
+    background-color: blue;
+    color: aliceblue;
+}
+button:hover{
+    cursor: pointer;
+}
+#submit-button{
+    margin:10px 0px;
+}
+h2{
+    color: white;
+}
+.rev{
+    color: aliceblue;
+}
+#reviewsList{
+    color:white;
+}
+.name{
+    color: burlywood;
+    margin-left: 27px;
+}
+.review{
+    margin-left: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -5px;
+    border: 2px solid #3d3935;
+    height: 50px;
+    width: 50%;
+    padding: 10px;
+}
+.rev-sec{
+    margin-bottom: 40px;
+}
+.allR{
+    margin-bottom: 40px;
+    margin-left: 8px;
+}
